@@ -1,48 +1,57 @@
-# Factory Design Pattern in Java 🏭
+# Factory Design Pattern – Java
 
-This repository contains a simple and clear implementation of the **Factory Design Pattern** using Java.
-The project demonstrates how object creation can be handled using a factory class instead of direct
-instantiation, following OOP and clean code principles.
-
----
-
-## 📌 What is the Factory Design Pattern?
-
-The Factory Design Pattern is a **creational design pattern** that provides an interface for creating
-objects but allows subclasses or a factory class to decide which object to create.
-It helps reduce tight coupling between classes and improves code flexibility.
+## 📌 Overview
+This project demonstrates the **Factory Design Pattern** using a real-world example: a **Notification system**.  
+The Factory Pattern helps encapsulate object creation and promotes **loose coupling** between classes.
 
 ---
 
-## 🎯 Why Use Factory Pattern?
-
-- Avoids direct use of `new` keyword in client code
-- Promotes **loose coupling**
-- Improves **code maintainability**
-- Supports **polymorphism**
-- Easy to extend with new object types
-
----
-
-## 🧠 Concepts Used
-
-- Interfaces
-- Polymorphism
-- Encapsulation
-- Abstraction
-- Object-Oriented Design (OOD)
-
----
-
-## 🏗️ Project Structure
+## 🏗 Project Structure
+src/
+├── Circle.java # Concrete Shape implementation
+├── Rectangle.java # Concrete Shape implementation
+├── Square.java # Concrete Shape implementation
+├── ShapeFactory.java # Factory class that creates shapes based on input
+├── ShapeSelector.java # Client class that demonstrates shape selection
+└── FactoryPatternDemo.java # Main class to run the program
 
 
 ---
 
-## ▶️ How It Works
+## 🧠 Why Factory Pattern?
 
-The client code requests an object from the factory instead of creating it directly.
+- Centralizes object creation logic in the Factory class  
+- Reduces dependency between client and concrete classes  
+- Makes adding new shapes easy without changing existing code  
+- Demonstrates clean **Object-Oriented Programming (OOP)** principles  
+- Ideal for showcasing design patterns on GitHub or in portfolios  
 
-```java
-Shape shape = ShapeFactory.getShape("CIRCLE");
-shape.draw();
+---
+## 🛠️ Architecture
+
+This implementation uses an interface-based approach to handle different geometric shapes.
+
+### Class Diagram
+```mermaid
+classDiagram
+    class Shape {
+        <<interface>>
+        +draw()
+    }
+    class Circle {
+        +draw()
+    }
+    class Rectangle {
+        +draw()
+    }
+    class Square {
+        +draw()
+    }
+    class ShapeFactory {
+        +getShape(type: String) Shape
+    }
+    Shape <|.. Circle
+    Shape <|.. Rectangle
+    Shape <|.. Square
+    ShapeFactory ..> Shape : creates
+
